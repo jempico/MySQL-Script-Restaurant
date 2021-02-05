@@ -68,14 +68,16 @@ CREATE TABLE `delivery_driver` (
 
 CREATE TABLE `city` (
   `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `nom` varchar(25),
+  `name` varchar(25),
   `id_province` int
 );
 
+
 CREATE TABLE `province` (
   `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `nom` varchar(25)
+  `name` varchar(25)
 );
+
 
 CREATE TABLE `order_item` (
   `id_product` int NOT NULL AUTO_INCREMENT,
@@ -107,3 +109,29 @@ ALTER TABLE `restaurant` ADD FOREIGN KEY (`id_city`) REFERENCES `city` (`id`);
 
 ALTER TABLE `employees` ADD FOREIGN KEY (`id_restaurant`) REFERENCES `restaurant` (`id`);
 
+-- INSERTING DATA
+
+INSERT INTO client(name, surnames, address, postal_code, phone) VALUES
+('Michael', 'Scott', '123 Ventura Blvd', 21010, '1-3184892710' ),
+('Dwight', 'Schrute', '398 Ridiculus Rd.', 96075, '1-9854426979' ),
+('Pam', 'Beesley', 'Ap #234-5298 Feugiat St.', 42389, '1-9603313780' ),
+('Kelly', 'Kapoor', 'P.O. Box 769, 8917 A Ave', 89039, '1-8761337240' ),
+('Jim', 'Halpert', '1683 Natoque Av.', 86682, '1-7244767412' ),
+('Andy', 'Bernard', '7011 Auctor St.', 48227, '1-9158269416' ),
+('Stanley', 'Hudson', '2899 Pellentesque Street', 25454, '1-4752379086' );
+ 
+INSERT INTO province(name) VALUES ('San Francisco'), ('Pensilvania');
+INSERT INTO city(name, id_province) VALUES ('Sillicon Valey', 1), ('Scrancton', 2);
+ 
+UPDATE client SET id_city=2;
+UPDATE client SET id_city=1 WHERE id=1;
+
+INSERT INTO restaurant(address, postal_code, id_city) VALUES('108-4905 Felis. Rd.', 98110, 1);
+INSERT INTO restaurant(address, postal_code, id_city) VALUES('3064 Tincidunt Road', 26101, 2);
+
+INSERT INTO EMPLOYEES(name, nif, telf, role, id_restaurant) VALUES
+('Richard','3546785R', '1-6949094306', 'chef', 1),
+('Dinesh', '3546785D','1-6949065306', 'driver', 1),
+('Gilfoyle', '3546785G','1-6329065306', 'driver', 1),
+('Jian-Yang', '3546785J','1-6323865306', 'driver', 2),
+('Big Head', '3546785b','1-6329011106', 'chef', 2);
